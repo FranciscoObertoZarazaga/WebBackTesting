@@ -1,0 +1,77 @@
+div.teclado{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px;
+    z-index: 0;
+}
+
+#numeros{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 300px;
+    max-width: 300px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#funciones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 200px;
+    max-width: 300px;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 1px;
+}
+
+button, #openIndicatorMenu, div.symbol, div.system, div.temp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border: none;
+    background-color: #224870;
+    box-shadow: 5px 5px 10px -3px #00000040, -1px -1px 1px 1px rgba(255,255,255, .1);
+    border-radius: 32px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#indicadores button, #symbols div.symbol, #systems div.system, div.temp{
+    font-size: 25px;
+    padding: 5px 25px;
+    margin: 10px 10px;
+    width: 200px;
+}
+
+#funciones button{
+    font-size: 1.2em;
+}
+
+button:active, #symbols div.symbol:active, #systems div.system:active, #temps div.temp:active{
+    background-color: #124171;
+    box-shadow: none;
+}
+
+button:focus, #symbols div.symbol:focus, #systems div.system:focus, #temps div.temp:focus{
+    outline: none;
+}
+
+.doble{
+    width: 110px;
+}
+
+.triple{
+    width: 140px;
+}
+
+.cuadruple, #openIndicatorMenu{
+    width: 300px;
+}

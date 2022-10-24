@@ -1,0 +1,14 @@
+{% macro pares(symbols) %}
+    <div id="symbolMenu">
+        <div id="closeSymbolMenu">✕</div>
+        <div class="renglon">
+            <label for="symbolSearcher">🔎</label>
+            <input type="text" id="symbolSearcher">
+        </div>
+        <div id="symbols">
+            {%for symbol in symbols%}
+                <div class="symbol">{{symbol.upper()}}</div>
+            {%endfor%}
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,30 @@
+.trades{
+    background: none;
+    box-shadow: none;
+    height: 500px;
+    padding: 0;
+}
+
+.trades .table-container{
+    overflow-y: scroll;
+    border-radius: 25px;
+}
+
+.trades .table-container table{
+    width: 100%;
+    background: #282828;
+    border-radius: 0;
+}
+
+thead{
+    position: sticky;
+    top: 0;
+    background: rgba(39, 78, 133, 1);
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.trades td{
+    text-align: left;
+    border-bottom: solid 1px white;
+}

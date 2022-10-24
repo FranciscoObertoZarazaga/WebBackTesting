@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% from "resumen.html" import resumen %}
+{% from "trades.html" import trades %}
+{% from "codesnap.html" import codesnap %}
+{% from "imprimir.html" import imprimir %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/resultado.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/resumen.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/trades.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/codesnap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/download.css') }}">
+{% endblock %}
+
+{% block content %}
+    {{ resumen(info, coin, base) }}
+    {{ trades(info, base) }}
+    {{ codesnap(buy_strategy, sell_strategy) }}
+    {{ imprimir(path) }}
+{% endblock %}

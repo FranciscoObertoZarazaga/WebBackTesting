@@ -1,0 +1,56 @@
+.codesnap .tittle{
+    width: 100%;
+    background: #282828;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.rojo, .amarillo, .verde{
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: red;
+    margin: 0 5px;
+}
+
+.amarillo{
+    background: yellow;
+}
+
+.verde{
+    background: green;
+}
+
+.code{
+    width: 100%;
+    background: #282828;
+    border-radius: 0 0 25px 25px;
+    padding: 25px;
+}
+
+.code .line{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    align-items: center;
+}
+
+.n-line{
+    margin: 0 10px;
+    font-size: 15px;
+    color: rgba( 257, 257, 257, .5);
+}
+
+.code .text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: lighter;
+}
+
+.comentario{
+    color: rgba( 257, 257, 257, .5);
+}

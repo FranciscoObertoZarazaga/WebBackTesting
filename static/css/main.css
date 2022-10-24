@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Calibri;
+    font-size: 20px;
+    color: white;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #224870;
+}
+
+header{
+    background: rgba( 255, 255, 255, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+    backdrop-filter: blur( 4.5px );
+    -webkit-backdrop-filter: blur( 4.5px );
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+header img{
+    width: 250px;
+}
+
+div#menu{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+*{
+    scrollbar-width: auto;
+    scrollbar-color: #303030 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar{
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track{
+    background: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #303030;
+    border-radius: 10px;
+    border: none;
+}

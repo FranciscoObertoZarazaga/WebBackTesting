@@ -1,0 +1,45 @@
+{% macro codesnap(buy_strategy, sell_strategy) %}
+    <div class="codesnap-container">
+        <div class="codesnap">
+            <div class="tittle">
+                <div class="rojo"></div>
+                <div class="amarillo"></div>
+                <div class="verde"></div>
+            </div>
+            <div class="code">
+                <div class="line">
+                    <div class="n-line">1</div>
+                    <div class="text"><div class="comentario">//Pseudocódigo</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">2</div>
+                    <div class="text">if ( {{buy_strategy}} ) { <div class="comentario">&nbsp;&nbsp;//Condición de compra</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">3</div>
+                    <div class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BUY <div class="comentario">&nbsp;&nbsp;//Compra</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">4</div>
+                    <div class="text">} else if ( {{sell_strategy}} ) { <div class="comentario">&nbsp;&nbsp;//Condición de venta</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">5</div>
+                    <div class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELL<div class="comentario">&nbsp;&nbsp;//Vende</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">6</div>
+                    <div>} else {</div>
+                </div>
+                <div class="line">
+                    <div class="n-line">7</div>
+                    <div class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTHING <div class="comentario">&nbsp;&nbsp;//Espera</div></div>
+                </div>
+                <div class="line">
+                    <div class="n-line">8</div>
+                    <div class="text">}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

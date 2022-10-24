@@ -1,0 +1,42 @@
+{% macro teclado() %}
+    <div class="teclado">
+        <div id="numeros">
+            <button class="doble">C</button>
+            <button>←</button>
+            <button>(</button>
+            <button>)</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button><</button>
+            <button>></button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>x</button>
+            <button>/</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+            <button>-</button>
+            <button class="doble">0</button>
+            <button>.</button>
+            <button>,</button>
+        </div>
+        <div id="funciones">
+            <button class="triple">Max</button>
+            <button class="triple">Min</button>
+            <button class="cuadruple">Precio</button>
+            <div class="cuadruple" id="openIndicatorMenu">Indicadores</div>
+            <button class="triple">⇦</button>
+            <button class="triple">⇨</button>
+            <button class="cuadruple">Espacio</button>
+        </div>
+        <div class="opciones">
+            <button class="cuadruple" id="openSymbolMenu">Pares</button>
+            <button class="cuadruple" id="openSystemMenu">Sistema de Precios</button>
+            <button class="cuadruple" id="openTempMenu">Temporalidad</button>
+        </div>
+    </div>
+{% endmacro %}
