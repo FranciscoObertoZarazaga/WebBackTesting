@@ -1,0 +1,14 @@
+{% macro indicadores(indicators) %}
+    <div id="indicatorMenu">
+        <div id="closeIndicatorMenu">✕</div>
+        <div class="renglon">
+            <label for="indicatorSearcher">🔎</label>
+            <input type="text" id="indicatorSearcher">
+        </div>
+        <div id="indicadores">
+            {%for indicator in indicators%}
+            <button class="indicator">{{indicator.upper()}}</button>
+            {%endfor%}
+        </div>
+    </div>
+{% endmacro %}

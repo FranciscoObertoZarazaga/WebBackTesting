@@ -1,0 +1,111 @@
+{% macro resumen(info, coin, base) %}
+    <div id="resumen" class="resultados-container">
+        <div class="resultados">
+            <div class="tittle">RESUMEN DEL RESULTADO</div>
+            <div class="subtittle">Se simularon {{info.resultado.anios}} años, {{info.resultado.meses}} meses y {{info.resultado.dias}} días</div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <td>Monto Inicial</td>
+                        <td>{{info.resultado.monto_inicial}}</td>
+                        <td>{{base}}</td>
+                    </tr>
+                    <tr>
+                        <td>Monto Final</td>
+                        <td>{{info.resultado.monto_final}}</td>
+                        <td>{{base}}</td>
+                    </tr>
+                    <tr>
+                        <td>Crypto Final</td>
+                        <td>{{info.resultado.crypto_final}}</td>
+                        <td>{{coin}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ganancia Bruta</td>
+                        <td>{{info.resultado.ganancia_bruta}}</td>
+                        <td>{{base}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pérdida</td>
+                        <td>{{info.resultado.perdida}}</td>
+                        <td>{{base}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ganancia Neta</td>
+                        <td>{{info.resultado.ganancia_neta}}</td>
+                        <td>{{base}}</td>
+                    </tr>
+                    <tr>
+                        <td>Acertabilidad</td>
+                        <td>{{info.resultado.acertabilidad}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Multiplicador</td>
+                        <td>{{info.resultado.multiplicador}}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>N° de Trades</td>
+                        <td>{{info.resultado.n_trades}}</td>
+                    </tr>
+                    <tr>
+                        <td>N° de Trades Positivos</td>
+                        <td>{{info.resultado.n_trades_positivo}}</td>
+                    </tr>
+                    <tr>
+                        <td>N° de Trades Negativos</td>
+                        <td>{{info.resultado.n_trades_negativo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tasa de Aciertos</td>
+                        <td>{{info.resultado.tasa_aciertos}}</td>
+                        <td>P/N</td>
+                    </tr>
+                    <tr>
+                        <td>Tasa Promedio</td>
+                        <td>{{info.resultado.tasa_promedio}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Tasa de Ganancia Promedio</td>
+                        <td>{{info.resultado.tasa_ganancia_promedio}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Tasa de Pérdida Promedio</td>
+                        <td>{{info.resultado.tasa_perdida_promedio}}</td>
+                        <td>%</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>Rendimiendo</td>
+                        <td>{{info.resultado.rendimiento}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Rendimiendo Diario Promedio</td>
+                        <td>{{info.resultado.rendimiento_diario}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Rendimiendo Mensual Promedio</td>
+                        <td>{{info.resultado.rendimiento_mensual}}</td>
+                        <td>%</td>
+                    </tr>
+                    <tr>
+                        <td>Rendimiendo Anual Promedio</td>
+                        <td>{{info.resultado.rendimiento_anual}}</td>
+                        <td>%</td>
+                    </tr>
+                </table>
+                <div id="points">
+                    {{info.points}} Ptos.
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endmacro %}

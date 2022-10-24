@@ -1,0 +1,43 @@
+{% macro trades(info, base) %}
+    <div class="trades-container">
+        <div class="trades">
+            <div class="table-container">
+                <table>
+                    <colgroup span="4"></colgroup>
+                    <thead>
+                    <tr>
+                        <th colspan="1">ID</th>
+                        <th colspan="3">COMPRA</th>
+                        <th colspan="3">VENTA</th>
+                        <th colspan="2">RESULTADO</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Monto ({{base}})</td>
+                        <td>Precio</td>
+                        <td>Fecha y Hora</td>
+                        <td>Monto ({{base}})</td>
+                        <td>Precio</td>
+                        <td>Fecha y Hora</td>
+                        <td>Ganancia ({{base}})</td>
+                        <td>Tasa de Ganancia (%)</td>
+                    </tr>
+                    </thead>
+                    {%for i in range(info.trades.final|length)%}
+                    <tr>
+                        <td>{{i}}</td>
+                        <td>{{info.trades.inicial[i]}}</td>
+                        <td>{{info.trades.buy_price[i]}}</td>
+                        <td>{{info.trades.buy_time[i]}}</td>
+                        <td>{{info.trades.final[i]}}</td>
+                        <td>{{info.trades.sell_price[i]}}</td>
+                        <td>{{info.trades.sell_time[i]}}</td>
+                        <td>{{info.trades.reward[i]}}</td>
+                        <td>{{info.trades.rate[i]}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

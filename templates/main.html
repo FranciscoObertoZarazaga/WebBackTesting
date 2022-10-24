@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+    {% block css %}
+
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+    <title>BackTest Wizard</title>
+</head>
+<body id="body">
+    <header>
+        <img src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
+        <div id="menu">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <div>Instrucciones</div>
+        </div>
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block endjs %}
+
+    {% endblock %}
+
+</body>
+</html>

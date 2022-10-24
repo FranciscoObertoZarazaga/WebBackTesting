@@ -1,0 +1,14 @@
+{% macro price(price_system) %}
+    <div id="systemMenu">
+        <div id="closeSystemMenu">✕</div>
+        <div class="renglon">
+            <label for="systemSearcher">🔎</label>
+            <input type="text" id="systemSearcher">
+        </div>
+        <div id="systems">
+            {%for system in price_system%}
+                <div class="system">{{system}}</div>
+            {%endfor%}
+        </div>
+    </div>
+{% endmacro %}

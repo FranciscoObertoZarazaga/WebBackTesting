@@ -1,0 +1,14 @@
+{% macro temporalidad(temps) %}
+    <div id="tempMenu">
+        <div id="closeTempMenu">✕</div>
+        <div class="renglon">
+            <label for="tempSearcher">🔎</label>
+            <input type="text" id="tempSearcher">
+        </div>
+        <div id="temps">
+            {%for temp in temps%}
+                <div class="temp">{{temp.upper()}}</div>
+            {%endfor%}
+        </div>
+    </div>
+{% endmacro %}
