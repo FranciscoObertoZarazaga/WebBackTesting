@@ -1,5 +1,5 @@
 import threading
-
+from waitress import serve
 from flask import Flask, render_template, request, redirect, send_file
 from DataBase import DATABASE
 from MercadoPago import *
@@ -67,4 +67,5 @@ def instrucciones():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    serve(app, host="0.0.0.0", port=8080)
+    #app.run(debug=False)
