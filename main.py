@@ -3,12 +3,12 @@ import threading
 from flask import Flask, render_template, request, redirect, send_file
 from DataBase import DATABASE
 from MercadoPago import *
-from TestBot.indicators.Indicator import indicators
+from Indicator import indicators
 from Filter import check, checkSymbol, checkPriceSystem, checkTemporality, checkPercentage
-from TestBot.main import backtest
-from TestBot.Binance import Binance, temps
+from Backtest import backtest
+from Binance import Binance, temps
 from FileReport import getPath, deleteFile
-from TestBot.tools.price_system import PRICE
+from price_system import PRICE
 from io import BytesIO
 
 
@@ -63,7 +63,6 @@ def download():
 @app.route('/instrucciones')
 def instrucciones():
     file = open('instrucciones.pdf', 'rb')
-    print(file)
     return send_file(file, download_name='instrucciones.pdf')
 
 
