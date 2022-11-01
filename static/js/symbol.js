@@ -3,7 +3,6 @@
     var symbol_buttons = document.getElementsByClassName('symbol');
 
     document.getElementById('closeSymbolMenu').addEventListener('click', closeSymbolMenu);
-    document.getElementById('openSymbolMenu').addEventListener('click', openSymbolMenu);
     document.getElementById('symbolInput').addEventListener('click', openSymbolMenu);
     window.addEventListener('keydown', function(){
         if (event.key == 'Escape') {

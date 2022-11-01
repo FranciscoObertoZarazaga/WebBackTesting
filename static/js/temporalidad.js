@@ -3,7 +3,6 @@
     var temp_buttons = document.getElementsByClassName('temp');
 
     document.getElementById('closeTempMenu').addEventListener('click', closeTempMenu);
-    document.getElementById('openTempMenu').addEventListener('click', openTempMenu);
     document.getElementById('tempInput').addEventListener('click', openTempMenu);
     window.addEventListener('keydown', function(){
         if (event.key == 'Escape') {
