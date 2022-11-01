@@ -2,9 +2,12 @@ import pandas as pd
 import zipfile
 from os import remove
 from time import sleep
+import os
 
 
 def getPath(symbol, info, buy_strategy, sell_strategy):
+    if not os.path.exists('./csv'):
+        os.mkdir('./csv')
     id = f'{symbol}, {info["points"]} ptos'
     path = f'csv/{id}'
     extension = '.xlsx'
