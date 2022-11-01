@@ -29,7 +29,7 @@ div.teclado{
     margin: 5px 1px;
 }
 
-button, #openIndicatorMenu, div.symbol, div.system, div.temp{
+button, #openIndicatorMenu, .temp, .symbol, .system{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@ button, #openIndicatorMenu, div.symbol, div.system, div.temp{
     margin: 5px;
 }
 
-#indicadores button, #symbols div.symbol, #systems div.system, div.temp{
+#indicadores button, .temp, .symbol, .system{
     font-size: 25px;
     padding: 5px 25px;
     margin: 10px 10px;
@@ -55,12 +55,12 @@ button, #openIndicatorMenu, div.symbol, div.system, div.temp{
     font-size: 1.2em;
 }
 
-button:active, #symbols div.symbol:active, #systems div.system:active, #temps div.temp:active{
+button:active, .temp:active, .symbol:active, .system:active{
     background-color: #124171;
     box-shadow: none;
 }
 
-button:focus, #symbols div.symbol:focus, #systems div.system:focus, #temps div.temp:focus{
+button:focus, .temp:focus, .symbol:focus, .system:focus{
     outline: none;
 }
 

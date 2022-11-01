@@ -62,7 +62,9 @@ def download():
 
 @app.route('/instrucciones')
 def instrucciones():
-    return render_template('instrucciones.html')
+    file = open('instrucciones.pdf', 'rb')
+    print(file)
+    return send_file(file, download_name='instrucciones.pdf')
 
 
 if __name__ == '__main__':

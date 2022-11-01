@@ -3,7 +3,6 @@
     var system_buttons = document.getElementsByClassName('system');
 
     document.getElementById('closeSystemMenu').addEventListener('click', closeSystemMenu);
-    document.getElementById('openSystemMenu').addEventListener('click', openSystemMenu);
     document.getElementById('systemInput').addEventListener('click', openSystemMenu);
     window.addEventListener('keydown', function(){
         if (event.key == 'Escape') {
