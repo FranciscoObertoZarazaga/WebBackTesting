@@ -27,11 +27,11 @@
 
     function closeIndicatorMenu() {
         document.getElementById('indicatorMenu').style.display = 'none';
-        indicator_input.focus();
     }
 
     function openIndicatorMenu() {
         document.getElementById('indicatorMenu').style.display = 'flex';
+        indicator_input.focus();
     }
 })();
 

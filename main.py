@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, send_file
 from DataBase import DATABASE
 from MercadoPago import *
 from TestBot.indicators.Indicator import indicators
-from Filter import check, checkSymbol
+from Filter import check, checkSymbol, checkPriceSystem, checkTemporality, checkPercentage
 from TestBot.main import backtest
 from TestBot.Binance import Binance, temps
 from FileReport import getPath, deleteFile
@@ -32,17 +32,23 @@ def pay():
     sell_strategy = request.args.get('sell-strategy').lower()
     symbol = request.args.get('symbol')
     price_system = request.args.get('price_system').upper()
-    temporalidad = request.args.get('temp').lower().replace(' ', '')
+    temporalidad = request.args.get('temp').lower()
+    stoploss = request.args.get('stoploss')
+    trailing = request.args.get('trailing')
 
     try:
         check(buy_strategy)
         check(sell_strategy)
         checkSymbol(symbol)
+        checkPriceSystem(price_system)
+        checkTemporality(temporalidad)
+        stoploss = checkPercentage(stoploss)
+        trailing = checkPercentage(trailing)
         coin, base = Binance().getSymbolParts(symbol)
-        info = backtest(buy_strategy, sell_strategy, symbol, price_system, temporalidad)
+        info = backtest(buy_strategy, sell_strategy, symbol, price_system, temporalidad, stoploss, trailing)
     except Exception as e:
         print(e)
-        return render_template('error.html')
+        return render_template('error.html', error=str(e))
     path = getPath(symbol, info, buy_strategy, sell_strategy)
     return render_template('result.html', info=info, coin=coin, base=base, buy_strategy=buy_strategy, sell_strategy=sell_strategy, path=path)
     #return redirect(get_init_point(request.host_url, data))
@@ -53,6 +59,10 @@ def download():
     file = open(path, 'rb')
     threading.Thread(target=deleteFile, args=[file, path]).start()
     return send_file(file, download_name=file.name.replace('csv/', ''), mimetype='zip')
+
+@app.route('/instrucciones')
+def instrucciones():
+    return render_template('instrucciones.html')
 
 
 if __name__ == '__main__':
