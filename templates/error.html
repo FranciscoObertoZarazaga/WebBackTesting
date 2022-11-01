@@ -1,27 +1,80 @@
 {% extends 'main.html' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/error.css') }}">
+{% endblock %}
+
 {% block content %}
-  <h1>Ha ocurrido un error</h1>
-  {{error}}
-  <p><small>Posibles causas</small></p>
-  {% if error == "NullException" %}
-    <p>Las estrategias de compra y venta no pueden quedar vacías.</p>
-  {% elif error == "UnknownSymbolException" %}
-    <p>El par de criptomonedas no puede quedar vacío.</p>
-    <p>No se ha podido reconocer el par de criptomonedes.</p>
-  {% elif error == "UnknownPriceSystemException" %}
-    <p>El sistema de precios no puede quedar vacío.</p>
-    <p>No se ha podido reconocer el sistema de precios.</p>
-  {% elif error == "UnknownTemporalityException" %}
-    <p>La temporalidad no puede quedar vacía.</p>
-    <p>No se ha podido reconocer la temporalidad.</p>
-  % elif error == "InvalidCharacterException" %}
-    <p>Se ha ingresado un carácter inválido en la estrategia.</p>
-    <p>Se ha ingresado una función desconocida.</p>
-    <p>Se ha ingresado un indicador desconocido.</p>
-    <p>Se ha utilizado una palabra no permitida.</p>
-  {% else %}
-    <p>Error inesperado.</p>
-  {% endif %}
+  <div class="container">
+    <h1>Ha ocurrido un error</h1>
+    <!--{{error}}-->
+    <div class="container2">
+      <small>Posibles causas</small>
+      {% if error == "NullException" %}
+        <p>Las estrategias de compra y venta no pueden quedar vacías.</p>
+      {% elif error == "UnknownSymbolException" %}
+        <p>El par de criptomonedas no puede quedar vacío.</p>
+        <p>No se ha podido reconocer el par de criptomonedes.</p>
+      {% elif error == "UnknownPriceSystemException" %}
+        <p>El sistema de precios no puede quedar vacío.</p>
+        <p>No se ha podido reconocer el sistema de precios.</p>
+      {% elif error == "UnknownTemporalityException" %}
+        <p>La temporalidad no puede quedar vacía.</p>
+        <p>No se ha podido reconocer la temporalidad.</p>
+      {% elif error == "InvalidCharacterException" %}
+        <p>Se ha ingresado un carácter inválido en la estrategia.</p>
+        <p>Se ha ingresado una función desconocida.</p>
+        <p>Se ha ingresado un indicador desconocido.</p>
+        <p>Se ha utilizado una palabra no permitida.</p>
+      {% elif error == "InvalidStrategyException" or error == "StrategyNotBooleanException" %}
+        <p>Estrategia no válida.</p>
+        <p>Estrategia no booleana.</p>
+      {% elif error == "CeroTradeException" %}
+        <p>Esta estrategia no ha realizado ningún trade durante el periodo testeado.</p>
+        <p>Esta estrategia ha realizado demasiados trades en pequeños lapsos de tiempo y ha perdido todo el monto inicial en comisiones.</p>
+      {% elif error == "PercentageException" %}
+        <p>El porcentaje de Stop Loss es inválido.</p>
+        <p>El porcentaje de Trailing Stop es inválido.</p>
+      {% elif error == "IndicatorArgumentException" %}
+        <p>Ha ingresado demasiados argumentos para un indicador.</p>
+        <p>Ha ingresado argumentos inválidos para un indicador.</p>
+      {% else %}
+        <p>Error inesperado.</p>
+      {% endif %}
+    </div>
+    <div class="container2">
+      <small>Posibles soluciones</small>
+      {% if error == "NullException" %}
+        <p>Ingresar estrategia de compra y venta.</p>
+      {% elif error == "UnknownSymbolException" %}
+        <p>Elegir un par de cryptomonedas.</p>
+        <p>Ingresar un par de cryptomonedas válido.</p>
+      {% elif error == "UnknownPriceSystemException" %}
+        <p>Elegir un sistema de precios.</p>
+        <p>Elegir un sistema de precios válido.</p>
+      {% elif error == "UnknownTemporalityException" %}
+        <p>Elegir una temporalidad.</p>
+        <p>Elegir una temporalidad válida.</p>
+      {% elif error == "InvalidCharacterException" %}
+        <p>Utilizar sólo carácteres disponibles en el teclado del interfaz de usuario.</p>
+        <p>Utilizar sólo funciones disponibles en el teclado del interfaz de usuario.</p>
+        <p>Utilizar sólo indicadores disponibles en el menú de indicadores</p>
+        <p>Utilizar sólo valores disponibles en el teclado del interfaz de usuario.</p>
+      {% elif error == "InvalidStrategyException" or error == "StrategyNotBooleanException" %}
+        <p>Ingrese una estrategia válida.</p>
+        <p>Ingrese una estrategia que pueda ser clasificada en verdadero o falso.</p>
+      {% elif error == "CeroTradeException" %}
+        <p>Disminuya las condiciones de su estrategia, es demasiado estricta.</p>
+        <p>Intente que su estrategia no venda inmediatamente luego de comprar.</p>
+      {% elif error == "PercentageException" %}
+        <p>Stop Loss y Trailing Stop deben ser valores entre 0 y 100.</p>
+        <p>Stop Loss y Trailing Stop aceptan como máximo 2 decimales.</p>
+      {% elif error == "IndicatorArgumentException" %}
+        <p>Revise las instrucciones para establecer correctamente los argumentos de cada indicador.</p>
+      {% else %}
+        <p>Comuníquese con nosotros.</p>
+      {% endif %}
+    </div>
+  </div>
 
 {% endblock %}

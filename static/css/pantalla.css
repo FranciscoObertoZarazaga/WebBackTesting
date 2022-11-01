@@ -59,3 +59,26 @@ div.renglon label{
     opacity: .7;
     box-shadow: none;
 }
+
+div.subrenglon{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+
+}
+
+.subrenglon input{
+    width: 200px;
+    font-size: 15px;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.subrenglon label{
+    display: none;
+}
