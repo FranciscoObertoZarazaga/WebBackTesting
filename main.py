@@ -1,4 +1,5 @@
 import threading
+import os
 from waitress import serve
 from flask import Flask, render_template, request, redirect, send_file
 from DataBase import DATABASE
@@ -67,5 +68,7 @@ def instrucciones():
 
 
 if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port=8080)
+    #serve(app, host="0.0.0.0", port=int(os.environ.get("PORT", 17995)))
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
     #app.run(debug=False)
