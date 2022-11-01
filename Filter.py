@@ -1,7 +1,6 @@
-from TestBot.indicators.Indicator import indicators
-from TestBot.Binance import Binance
-from TestBot.tools.price_system import PRICE
-from TestBot.Binance import temps
+from Indicator import indicators
+from Binance import Binance, temps
+from price_system import PRICE
 
 
 def multireplace(string, lista, valor):
@@ -16,6 +15,7 @@ def check(string):
     string = multireplace(string, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], '')
     string = multireplace(string, ['max', 'min', 'precio'], '')
     string = multireplace(string, indicators, '')
+    print(string)
     assert string == '', 'InvalidCharacterException'
 
 
