@@ -32,7 +32,7 @@ def checkTemporality(temporality):
 
 
 def checkPercentage(percentage):
-    if percentage is None or percentage.strip() is '':
+    if percentage is None or percentage.strip() == '':
         return None
     n = float(percentage)
     assert 0 <= n <= 100, 'PercentageException'
