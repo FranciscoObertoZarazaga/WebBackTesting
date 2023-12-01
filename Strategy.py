@@ -1,31 +1,31 @@
 from Indicator import *
 import re
 
-match = "\([^)]*\)"
 
-
-def is_max(df, n, indicador):
-    return eval(f"(df['{indicador}'][n-2] < df['{indicador}'][n-1] > df['{indicador}'][n])")
+def is_max(indicador):
+    return f"(df['{indicador}'][n-2] < df['{indicador}'][n-1] > df['{indicador}'])"
 
 
 def is_min(df, n, indicador):
-    return eval(f"(df['{indicador}'][n-2] > df['{indicador}'][n-1] < df['{indicador}'][n])")
+    return f"(df['{indicador}'][n-2] > df['{indicador}'][n-1] < df['{indicador}'])"
 
 
-def replace_max(df, n, expresion):
-    maximo = re.findall(f"max{match}\)", expresion)
+def replace_max(expresion):
+    match = "max\([^)]*\)"
+    maximo = re.findall(match, expresion)
     for i in maximo:
         indicator = i.replace('max(', '')[:-1]
-        resultado = is_max(df, n, indicator)
+        resultado = is_max(indicator)
         expresion = expresion.replace(i, str(resultado))
     return expresion
 
 
-def replace_min(df, n, expresion):
-    minimo = re.findall(f"min{match}\)", expresion)
+def replace_min(expresion):
+    match = "min\([^)]*\)"
+    minimo = re.findall(match, expresion)
     for i in minimo:
         indicator = i.replace('min(', '')[:-1]
-        resultado = is_min(df, n, indicator)
+        resultado = is_min(indicator)
         expresion = expresion.replace(i, str(resultado))
     return expresion
 
@@ -42,23 +42,40 @@ def search_indicators(expresion):
 
 def replace_indicators(expresion, indicators):
     for i in indicators:
-        expresion = expresion.replace(i, f"df['{i}'][n]")
+        expresion = expresion.replace(f'#{i}', f"(df['{i}'])")
     return expresion
 
 
-def replace_price(expresion, price):
-    return expresion.replace('precio', str(price))
+def replace_price(expresion):
+    return expresion.replace('precio', "df['price']")
 
 
-def strategy(df, n, expresion, price):
+def replace_logic(expresion):
+    split = expresion.split('and')
+    expresion = ''
+    for part in split:
+        expresion += f'({part}) & '
+    expresion = expresion[:-2]
+    return expresion
+
+
+def strategy(expresion):
     indicators = search_indicators(expresion)
-    expresion = replace_max(df, n, expresion)
-    expresion = replace_min(df, n, expresion)
+    expresion = replace_logic(expresion)
+    expresion = replace_max(expresion)
+    expresion = replace_min(expresion)
     expresion = replace_indicators(expresion, indicators)
-    expresion = replace_price(expresion, price)
+    expresion = replace_price(expresion)
+    return expresion
+
+
+def evalStrategy(expresion, df):
     try:
-        resultado = eval(expresion)
+        print(expresion)
+        df['aux'] = eval(expresion)
+        df['aux'] = df['aux'].astype(bool)
     except Exception as e:
+        print(e)
         raise Exception('InvalidStrategyException')
-    assert type(resultado) in [bool, np.bool_] or resultado in [1, 0], 'StrategyNotBooleanException'
-    return resultado
+    assert df['aux'].dtype in [np.dtype(np.bool_), bool], 'StrategyNotBooleanException'
+    return df['aux']

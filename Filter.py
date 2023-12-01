@@ -11,12 +11,11 @@ def multireplace(string, lista, valor):
 
 def check(string):
     assert string != '' and string is not None, 'NullException'
-    string = multireplace(string, [' ', '(', ')', '<', '>', '*', 'x', '/', '+', '-', ',', '.'], '')
-    string = multireplace(string, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], '')
-    string = multireplace(string, ['max', 'min', 'precio'], '')
+    string = multireplace(string, ['max', 'min', 'precio', 'and', 'or'], '')
     string = multireplace(string, indicators, '')
-    print(string)
-    assert string == '', 'InvalidCharacterException'
+    string = multireplace(string, [' ', '(', ')', '<', '>', '*', 'x', '/', '+', '-', ',', '.', '#'], '')
+    string = multireplace(string, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], '')
+    assert string == '', f'InvalidCharacterException: {string}'
 
 
 def checkSymbol(symbol):

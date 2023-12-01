@@ -70,4 +70,4 @@ class DataBase:
             print(e)
 
 
-DATABASE = DataBase()
+#DATABASE = DataBase()

@@ -2,15 +2,13 @@ import threading
 import os
 from waitress import serve
 from flask import Flask, render_template, request, redirect, send_file
-from DataBase import DATABASE
-from MercadoPago import *
+#from DataBase import DATABASE
 from Indicator import indicators
 from Filter import check, checkSymbol, checkPriceSystem, checkTemporality, checkPercentage
 from Backtest import backtest
 from Binance import Binance, temps
 from FileReport import getPath, deleteFile
 from price_system import PRICE
-from io import BytesIO
 
 
 app = Flask(__name__)
@@ -49,10 +47,10 @@ def pay():
         info = backtest(buy_strategy, sell_strategy, symbol, price_system, temporalidad, stoploss, trailing)
     except Exception as e:
         print(e)
-        if str(e) not in ['NullException', 'InvalidCharacterException', 'UnknownSymbolException', 'UnknownPriceSystemException', 'UnknownTemporalityException', 'PercentageException', 'IndicatorArgumentException', 'CeroTradeException']:
+        '''if str(e) not in ['NullException', 'InvalidCharacterException', 'UnknownSymbolException', 'UnknownPriceSystemException', 'UnknownTemporalityException', 'PercentageException', 'IndicatorArgumentException', 'CeroTradeException']:
             columns = "error, buy_strategy, sell_strategy, symbol, price_system, temporalidad, stoploss, trailingstop"
             values = f"'{e}', '{buy_strategy}', '{sell_strategy}', '{symbol}', '{price_system}', '{temporalidad}', '{stoploss}', '{trailing}'"
-            DATABASE.insert('error', columns, values)
+            DATABASE.insert('error', columns, values)'''
         return render_template('error.html', error=str(e))
     path = getPath(symbol, info, buy_strategy, sell_strategy)
     return render_template('result.html', info=info, coin=coin, base=base, buy_strategy=buy_strategy, sell_strategy=sell_strategy, path=path)
@@ -73,6 +71,6 @@ def instrucciones():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    serve(app, host="0.0.0.0", port=port, threads=10)
-    #app.run(host='0.0.0.0', port=port)
+    #serve(app, host="0.0.0.0", port=port, threads=10)
+    app.run(host='0.0.0.0', port=port)
     #http://127.0.0.1:5000
