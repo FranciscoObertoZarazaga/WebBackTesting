@@ -43,3 +43,22 @@ PRICE = {
     'BEST': Best,
     'WORST': Worst
 }
+
+
+def fillPrice(data, price_system):
+    if price_system == 'HIGH':
+        data['price'] = data['High']
+    elif price_system == 'LOW':
+        data['price'] = data['Low']
+    elif price_system == 'OPEN':
+        data['price'] = data['Open']
+    elif price_system == 'CLOSE':
+        data['price'] = data['Close']
+    elif price_system == 'RANDOM':
+        data['price'] = data.apply(lambda row: random.uniform(row['Low'], row['High']), axis=1)
+    elif price_system == 'MEAN':
+        data['price'] = (data['High'] + data['Low']) / 2
+    if price_system == 'BEST':
+        print('implementar')
+    elif price_system == 'WORST':
+        print('implementar')

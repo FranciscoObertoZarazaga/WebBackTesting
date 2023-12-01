@@ -9,7 +9,7 @@ def point(resultado):
     n_trades = resultado['n_trades']
     mean_rate = resultado['tasa_promedio']
 
-    p1 = (multiplicador if multiplicador >= 1 else (-1/multiplicador)) / tiempo
+    p1 = (multiplicador if multiplicador >= 1 else (((-1/multiplicador)) / tiempo) if multiplicador > 0 else 0)
     p2 = (acertabilidad-50)
     p3 = (tasa_de_aciertos if tasa_de_aciertos >= 1 else (-1/tasa_de_aciertos))
     p4 = mean_rate

@@ -1,10 +1,35 @@
 from stop_loss_take_proffit import set_limit
 from Results import getResults, getTrades
 from buy_sell import buy, sell, sell_all
-from price_system import PRICE
+from price_system import fillPrice
 from Trader import Trader
-from Strategy import strategy
+from Strategy import strategy, evalStrategy
 from Point import point
+from tqdm import tqdm
+import numpy as np
+
+
+def fill(df):
+    df['indoor'] = False
+    df['buy_price'] = np.nan
+    index = df.index
+
+    df.loc[df['points'] == 1, 'indoor'] = True
+    df.loc[df['points'] == -1, 'indoor'] = False
+
+    for i in range(1, len(df)):
+        current_index = index[i]
+        previous_index = index[i - 1]
+
+        # Filling indoor
+        if df.at[current_index, 'points'] == 0:
+            df.at[current_index, 'indoor'] = df.at[previous_index, 'indoor']
+
+        # Filling Buy Price
+        if df.at[current_index, 'points'] == 1 and not df.at[previous_index, 'indoor']:
+            df.at[current_index, 'buy_price'] = df.at[current_index, 'price']
+        elif df.at[current_index, 'points'] == 0 or (df.at[current_index, 'points'] == 1 and df.at[previous_index, 'indoor']):
+            df.at[current_index, 'buy_price'] = df.at[previous_index, 'buy_price']
 
 
 def test(data, buy_strategy, sell_strategy, price_system, stoploss, trailing):
@@ -13,23 +38,31 @@ def test(data, buy_strategy, sell_strategy, price_system, stoploss, trailing):
     buy_price = None
     max_price = None
     indoor = False
+    buy_strategy = strategy(buy_strategy)
+    sell_strategy = strategy(sell_strategy)
 
-    for i in range(large):
+    fillPrice(data=data, price_system=price_system)
+
+    data['points'] = evalStrategy(buy_strategy, data)
+    data['points'] += evalStrategy(sell_strategy, data) * (-1)
+
+    fill(data)
+
+    for i in tqdm(range(large), desc="Backtesting"):
         if i < 2:
             continue
 
         time = data.index[i]
 
         ###SISTEMA DE PRECIOS###
-        price = PRICE[price_system](data, i, indoor)
+        price = data['price'][i]
         ###FIN SISTEMA DE PRECIOS###
 
         ###ESTRATEGIA###
         # Evalua la estrategia de compra
-        points = strategy(data, i, buy_strategy, price)
-        # Evalua la estrategia de venta
-        points += strategy(data, i, sell_strategy, price) * (-1)
+        points = data['points'][i]
         ###FIN ESTRATEGIA###
+
 
         ###STOP LOSS###
         if indoor:
