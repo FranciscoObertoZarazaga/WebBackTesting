@@ -2,8 +2,8 @@ import time
 from binance.client import Client
 from binance import ThreadedWebsocketManager
 
-API_KEY = "a8HsGVpfYBxIF8dqcD7iHzhiMnRAnEm91BdjsjLghqzrZZY10ZLhuvANjBDpUEaE"
-SECRET_KEY = "Rf9xLiKHY5REx9q09VqPaSRaxbPQm9aAwRphTeaw62ffT8fQmScbSkmm90Ie6JTy"
+API_KEY = ""
+SECRET_KEY = ""
 
 class Binance:
 

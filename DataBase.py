@@ -4,11 +4,11 @@ import psycopg2 as db
 class DataBase:
     def __init__(self):
         self.conection = db.connect(
-            host='containers-us-west-100.railway.app',
-            user='postgres',
-            password='guT1DRuC5QA80rcLvIZe',
-            database='railway',
-            port=5890
+            host='',
+            user='',
+            password='',
+            database='',
+            port=8080
         )
         self.cursor = self.conection.cursor()
 
