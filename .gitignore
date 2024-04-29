@@ -1,4 +1,8 @@
 .idea/
+<<<<<<< HEAD
 __pycache__/
 *.csv
 *.zip
+=======
+__pycache__/
+>>>>>>> 7f055faa28e4dff5bba6823c83e3e3a9081a2d87
